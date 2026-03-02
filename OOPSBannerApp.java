@@ -1,11 +1,18 @@
 /**
- * OOPS Banner App - UC1
+ * OOPS Banner App - UC2
+ * Purpose: Displaying "OOPS" as a large ASCII banner using a 7-line grid.
  * @author poobesh
- * @version 1.0
+ * @version 2.0
  */
 public class OOPSBannerApp {
     public static void main(String[] args) {
-        // UC1 focuses on the main method as the entry point
-        System.out.println("OOPS");
+
+        System.out.println(" *****   *****   *****    ***** ");
+        System.out.println("*     * *     * *     *  *     *");
+        System.out.println("*     * *     * *     *  *      ");
+        System.out.println("*     * *     * *****    *****  ");
+        System.out.println("*     * *     * *             * ");
+        System.out.println("*     * *     * *       *     * ");
+        System.out.println(" *****   *****  *        *****  ");
     }
 }
