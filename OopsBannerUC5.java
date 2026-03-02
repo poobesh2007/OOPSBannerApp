@@ -1,17 +1,19 @@
-public class OopsBannerUC4 {
+public class OopsBannerUC5 {
 
     public static void main(String[] args) {
 
-        // Step 1: Store banner lines in array
+        // Array declaration + initialization in single step
         String[] banner = {
                 String.join("", " *****   ", " ******  ", " ******  ", " ****** "),
                 String.join("", "*     *  ", "*     *  ", "*     *  ", "*     *"),
                 String.join("", "*     *  ", "******   ", "******   ", "****** "),
                 String.join("", "*     *  ", "*        ", "*        ", "*      "),
-                String.join("", " *****   ", "*        ", "*        ", "*      ")
+                String.join("", " *****   ", "*        ", "*        ", "*      "),
+                String.join("", "         ", " ******  ", " ******  ", " ****** "),
+                String.join("", "         ", "*        ", "*        ", "*      ")
         };
 
-        // Step 2: Print using enhanced for loop
+        // Enhanced for-loop to print banner
         for (String line : banner) {
             System.out.println(line);
         }
