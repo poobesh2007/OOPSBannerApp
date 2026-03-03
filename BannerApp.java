@@ -1,64 +1,62 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class BannerApp {
 
-    // UC7: Encapsulating character data and patterns
-    public static class CharacterPattern {
-        private final char character;
-        private final String[] pattern;
+    // UC8: Using a Map for O(1) retrieval and better scalability
+    private static final Map<Character, String[]> patternMap = new HashMap<>();
 
-        public CharacterPattern(char character, String[] pattern) {
-            this.character = character;
-            this.pattern = pattern;
-        }
-
-        public char getCharacter() { return character; }
-        public String[] getPattern() { return pattern; }
+    static {
+        // Initialize the "Library" of characters
+        patternMap.put('O', new String[]{
+            "  *** ",
+            " * * ",
+            " * * ",
+            " * * ",
+            "  *** "
+        });
+        patternMap.put('P', new String[]{
+            " **** ",
+            " * * ",
+            " **** ",
+            " * ",
+            " * "
+        });
+        patternMap.put('S', new String[]{
+            "  **** ",
+            " * ",
+            "  *** ",
+            "     * ",
+            " **** "
+        });
     }
 
-    // Static store for our patterns
-    public static class CharacterPatternMap {
-        private static final CharacterPattern[] patterns = {
-            new CharacterPattern('O', new String[]{
-                "  *** ", " * * ", " * * ", " * * ", "  *** "
-            }),
-            new CharacterPattern('P', new String[]{
-                " **** ", " * * ", " **** ", " * ", " * "
-            }),
-            new CharacterPattern('S', new String[]{
-                "  **** ", " * ", "  *** ", "     * ", " **** "
-            })
-        };
+    /**
+     * Renders the word by looking up patterns in the Map
+     */
+    public static void renderBanner(String word) {
+        if (word == null || word.isEmpty()) return;
 
-        public static String[] getPatternFor(char c) {
-            for (CharacterPattern cp : patterns) {
-                if (Character.toUpperCase(c) == cp.getCharacter()) {
-                    return cp.getPattern();
-                }
-            }
-            return new String[]{" ", " ", " ", " ", " "}; // Default empty
-        }
-    }
+        int height = 5; // Standard height for our ASCII art
+        StringBuilder[] displayRows = new StringBuilder[height];
 
-    public static void displayBanner(String word) {
-        int height = 5; 
-        StringBuilder[] rows = new StringBuilder[height];
-        
         for (int i = 0; i < height; i++) {
-            rows[i] = new StringBuilder();
+            displayRows[i] = new StringBuilder();
         }
 
-        for (char c : word.toCharArray()) {
-            String[] pattern = CharacterPatternMap.getPatternFor(c);
+        for (char c : word.toUpperCase().toCharArray()) {
+            String[] lines = patternMap.getOrDefault(c, new String[]{" ", " ", " ", " ", " "});
             for (int i = 0; i < height; i++) {
-                rows[i].append(pattern[i]).append("  "); // Spacing between letters
+                displayRows[i].append(lines[i]).append("  "); 
             }
         }
 
-        for (StringBuilder row : rows) {
+        for (StringBuilder row : displayRows) {
             System.out.println(row.toString());
         }
     }
 
     public static void main(String[] args) {
-        displayBanner("OOPS");
+        renderBanner("OOPS");
     }
 }
